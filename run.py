@@ -61,7 +61,8 @@ def validate_data(values):
 
     return True
 
-def update_worksheet(data,worksheet):
+
+def update_worksheet(data, worksheet):
     """"
     Receives a list of integers to be inserted into a worksheet
     update the relevant worksheet with the data provided
@@ -70,6 +71,7 @@ def update_worksheet(data,worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
+
 
 def calculate_surplus_data(sales_row):
     """
@@ -90,6 +92,28 @@ def calculate_surplus_data(sales_row):
 
     return surplus_data
 
+
+def get_last_5_entries_sales():
+    """"
+    Collects columns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data
+    as a list of lists.
+    """
+    sales = SHEET.worksheet("sales")
+    #column = sales.col_values(3)
+    #print(column)
+    
+    """"
+    FIXME: The code below is not working as expected, 
+    Love Sanwiches 17 Getting our Sales Data
+    YouTube: 06:27
+    """
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column)
+    pprint(columns)
+
 def main():
     """
     Run all program functions
@@ -102,4 +126,6 @@ def main():
 
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+#main()
+
+get_last_5_entries_sales()
