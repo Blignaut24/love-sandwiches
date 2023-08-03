@@ -3,7 +3,6 @@ Calculating Surplus Data module for Love Sandwiches project.
 
 This module contains functions to calculate the surplus of sandwiches made by Love Sandwiches.
 """
-from pprint import pprint
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -32,7 +31,7 @@ def get_sales_data():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
 
         sales_data = data_str.split(",")
 
@@ -100,13 +99,14 @@ def get_last_5_entries_sales():
     as a list of lists.
     """
     sales = SHEET.worksheet("sales")
-    
+
     columns = []
     for ind in range(1, 7):
         column = sales.col_values(ind)
         columns.append(column[-5:])
 
     return columns
+
 
 def calculate_stock_data(data):
     """"
@@ -123,6 +123,7 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
+
 def main():
     """
     Run all program functions
@@ -136,7 +137,6 @@ def main():
     stock_data = calculate_stock_data(sale_columns)
     update_worksheet(stock_data, "stock")
 
+
 print("Welcome to Love Sandwiches Data Automation")
 main()
-
-
